@@ -14,7 +14,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="/travel">Travel </a>
+                <a class="nav-link" href="/">Travel </a>
             </li>
 
             <li class="nav-item">
