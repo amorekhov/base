@@ -4,6 +4,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import java.sql.Date;
 import java.util.Collection;
 import java.util.List;
@@ -13,15 +15,26 @@ import java.util.Set;
 @Table(name = "users")
 public class User implements UserDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long userId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long userId;
+
     private String username;
+
     private String firstName;
+
     private String lastName;
+
+    @Email(message = "Email is not correct")
+    @NotBlank(message = "Email cannot be empty")
     private String email;
+
     private String password;
+
     private boolean active;
+
     private Date birthday;
+
+    private String activationCode;
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
@@ -51,6 +64,11 @@ public class User implements UserDetails {
         this.birthday = birthday;
     }
 
+    public boolean isAdmin(){
+        return  roles.contains(Role.ADMIN);
+    }
+
+
     @Override
     public boolean isAccountNonExpired() {
         return true;
@@ -77,11 +95,11 @@ public class User implements UserDetails {
     }
 
 
-    public long getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -147,5 +165,13 @@ public class User implements UserDetails {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public String getActivationCode() {
+        return activationCode;
+    }
+
+    public void setActivationCode(String activationCode) {
+        this.activationCode = activationCode;
     }
 }

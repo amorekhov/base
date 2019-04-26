@@ -1,3 +1,4 @@
+<#include "security.ftl">
 <#import "login.ftl" as l>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -14,7 +15,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="/">Travel </a>
+                <a class="nav-link" href="/travel">Travel </a>
             </li>
 
             <li class="nav-item">
@@ -23,6 +24,7 @@
 
         </ul>
 
+        <div class="navbar-text mr-3">${name}</div>
 
         <@l.logout />
     </div>

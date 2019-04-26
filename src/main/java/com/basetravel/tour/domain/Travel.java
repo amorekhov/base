@@ -8,7 +8,7 @@ import java.util.List;
 @Table(name="tours")
 public class Travel {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long travelId;
     private String name;
     private String description;

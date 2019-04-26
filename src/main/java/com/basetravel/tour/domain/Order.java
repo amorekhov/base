@@ -1,7 +1,5 @@
 package com.basetravel.tour.domain;
 
-import org.springframework.data.annotation.CreatedDate;
-
 import javax.persistence.*;
 import java.sql.Date;
 
@@ -9,7 +7,7 @@ import java.sql.Date;
 @Table(name="orders")
 public class Order {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderId;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -33,7 +31,7 @@ public class Order {
         this.timeKey = timeKey;
     }
 
-    public Long getOrderId() {
+    public  Long getOrderId() {
         return orderId;
     }
 
