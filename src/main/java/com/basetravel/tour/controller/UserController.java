@@ -47,7 +47,7 @@ public class UserController {
     }
 
     @PostMapping("/useredit")
-    public String updateProfile(
+    public String userEdit(
             @AuthenticationPrincipal User user,
             @RequestParam String password,
             @RequestParam String firstName,
@@ -57,7 +57,7 @@ public class UserController {
 
             ){
 
-        userService.updateProfile(user,  password, email, firstName,lastName,birthday);
+        userService.userEdit(user,  password, email, firstName,lastName,birthday);
 
         return "redirect:/user";
     }

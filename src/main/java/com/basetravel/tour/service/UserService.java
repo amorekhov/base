@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -21,6 +22,10 @@ public class UserService implements UserDetailsService {
 
     @Autowired
     private MailSender mailSender;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -37,6 +42,7 @@ public class UserService implements UserDetailsService {
         user.setActive(false);
         user.setRoles(Collections.singleton(Role.USER));
         user.setActivationCode(UUID.randomUUID().toString());
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         userRepo.save(user);
 
@@ -68,7 +74,7 @@ public class UserService implements UserDetailsService {
         return true;
     }
 
-    public void updateProfile(User user, String password, String email, String firstName, String lastName, Date birthday) {
+    public void userEdit(User user, String password, String email, String firstName, String lastName, Date birthday) {
         String userEmail = user.getEmail();
 
         boolean isEmailChange = (email != null && !email.equals(userEmail)) || (userEmail != null && !userEmail.equals(email));
@@ -81,7 +87,9 @@ public class UserService implements UserDetailsService {
             }
         }
 
-            user.setPassword(password);
+        if (!StringUtils.isEmpty(password)){
+            user.setPassword(passwordEncoder.encode(password));
+        }
         user.setFirstName(firstName);
         user.setLastName(lastName);
         user.setBirthday(birthday);

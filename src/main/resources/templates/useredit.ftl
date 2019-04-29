@@ -11,14 +11,14 @@ ${message?ifExists}
     <div class="form-group">
         <label class="col-sm-2 col-form-label">firstName</label>
         <div class="col-sm-6">
-            <input type="text" name = "firstName" class="form-control" placeholder="Firstname"/>
+            <input type="text" name = "firstName" class="form-control" placeholder="Firstname" value="${firstname!''}"/>
         </div>
 
     </div>
     <div class="form-group">
         <label class="col-sm-2 col-form-label">lastName</label>
         <div class="col-sm-6">
-            <input type="text"  name="lastName"  class="form-control" placeholder="lastname"/>
+            <input type="text"  name="lastName"  class="form-control" placeholder="lastname" value="${lastname!''}"/>
         </div>
     </div>
 
@@ -38,7 +38,7 @@ ${message?ifExists}
     <div class="form-group">
         <label class="col-sm-2 col-form-label">birthday</label>
         <div class="col-sm-6">
-            <input type="date" name="birthday" class="form-control"/>
+            <input type="date" name="birthday" class="form-control" value="${birthday!''}"/>
         </div>
     </div>
 

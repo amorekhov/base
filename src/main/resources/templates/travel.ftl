@@ -4,7 +4,7 @@
 <@c.page>
 
 <div>
-        <a href="/traveladd">Добавить тур</a>
+    <a class="btn btn-primary" href=/traveladd">Добавить тур</a>
 </div>
 
 
