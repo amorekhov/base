@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.sql.Date;
 import java.util.Collections;
 import java.util.UUID;
 
@@ -65,5 +66,27 @@ public class UserService implements UserDetailsService {
 
 
         return true;
+    }
+
+    public void updateProfile(User user, String password, String email, String firstName, String lastName, Date birthday) {
+        String userEmail = user.getEmail();
+
+        boolean isEmailChange = (email != null && !email.equals(userEmail)) || (userEmail != null && !userEmail.equals(email));
+
+        if (isEmailChange){
+            user.setEmail(email);
+
+            if (!StringUtils.isEmpty(email)){
+                user.setActivationCode(UUID.randomUUID().toString());
+            }
+        }
+
+            user.setPassword(password);
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setBirthday(birthday);
+
+        userRepo.save(user);
+
     }
 }
