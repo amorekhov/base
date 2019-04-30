@@ -15,7 +15,15 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="/travel">Travel </a>
+                <a class="nav-link" href="/order">Order </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/order/${currentUserId}">My orders </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/travelall">Travel </a>
             </li>
 
             <li class="nav-item">

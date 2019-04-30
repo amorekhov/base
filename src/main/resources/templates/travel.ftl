@@ -3,47 +3,22 @@
 
 <@c.page>
 
-<div>
-    <a class="btn btn-primary" href=/traveladd">Добавить тур</a>
-</div>
+<form method="post" action="/travelall/${travel.travelId}/orderadd">
+        Name <h3> ${name}</h3>
+        Location <h3>${location}</h3>
+        Description <h3> ${description}</h3>
+        Start Date <h3> ${startdate}</h3>
+        End date <h3> ${enddate}</h3>
+        Limit <h3>${countlimit}</h3>
+
+
+    <input type="hidden" name="_csrf" value="${_csrf.token}" />
+    <#if isDate&isLimit>
+         <button class="btn btn-primary" type="submit">Выбрать тур</button>
+</#if>
+</form>
 
 
 
 
-<div>
-<table  border="1px">
-    <thead>
-        <tr>
-            <th>name</th>
-            <th>location</th>
-            <th>description</th>
-            <th>startDate</th>
-            <th>endDate</th>
-            <th>countLimit</th>
-            <th>freely</th>
-
-
-        </tr>
-    </thead>
-
-    <tbody>
-<#list travel as travel>
-
-<tr>
-    <td><center>${travel.name}</center></td>
-    <td><center>${travel.location}</center></td>
-    <td><center>${travel.description}</center></td>
-    <td><center>${travel.startDate}</center></td>
-    <td><center>${travel.endDate}</center></td>
-    <td><center>${travel.countLimit}</center></td>
-
-    <td><button type="submit" formaction="/orderadd">Добавить тур</button></td>
-</tr>
-    </tbody>
-
-<#else>
-No messages
-</#list>
-</table>
-</div>
 </@c.page>

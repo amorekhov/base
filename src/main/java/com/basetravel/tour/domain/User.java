@@ -18,19 +18,24 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
+    @NotBlank(message = "Username cannot be empty")
     private String username;
 
+    @NotBlank(message = "Firstname cannot be empty")
     private String firstName;
 
+    @NotBlank(message = "Lastname cannot be empty")
     private String lastName;
 
     @Email(message = "Email is not correct")
     @NotBlank(message = "Email cannot be empty")
     private String email;
 
+    @NotBlank (message = "Password cannot be empty")
     private String password;
 
     private boolean active;
+
 
     private Date birthday;
 
@@ -173,5 +178,13 @@ public class User implements UserDetails {
 
     public void setActivationCode(String activationCode) {
         this.activationCode = activationCode;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 }

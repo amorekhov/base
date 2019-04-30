@@ -3,12 +3,10 @@
 
 <@c.page>
 
-<#list orders as orders>
-<#if orders??>
 
-<#else>
-No messages
-</#if>
-</#list>
+
+
+<h5>Welcom, travel!</h5>
+
 
 </@c.page>
